@@ -9,79 +9,161 @@
   <br/>
 </p>
 
-# Wave Terminal
+# Wave Terminal Pinokio Script
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwavetermdev%2Fwaveterm.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwavetermdev%2Fwaveterm?ref=badge_shield)
+Dieses Pinokio-Script ermöglicht die einfache Installation und Ausführung von Wave Terminal mit einem Klick.
 
-Wave is an open-source terminal that combines traditional terminal features with graphical capabilities like file previews, web browsing, and AI assistance. It runs on MacOS, Linux, and Windows.
+## Was ist Wave Terminal?
 
-Modern development involves constantly switching between terminals and browsers - checking documentation, previewing files, monitoring systems, and using AI tools. Wave brings these graphical tools directly into the terminal, letting you control them from the command line. This means you can stay in your terminal workflow while still having access to the visual interfaces you need.
+Wave Terminal ist ein Open-Source Terminal, das traditionelle Terminal-Funktionen mit grafischen Fähigkeiten wie Dateivorschau, Webbrowsing und KI-Unterstützung kombiniert. Es läuft auf macOS, Linux und Windows.
 
-![WaveTerm Screenshot](./assets/wave-screenshot.webp)
+## Features
 
-## Key Features
-
-- Flexible drag & drop interface to organize terminal blocks, editors, web browsers, and AI assistants
-- Built-in editor for seamlessly editing remote files with syntax highlighting and modern editor features
-- Rich file preview system for remote files (markdown, images, video, PDFs, CSVs, directories)
-- Integrated AI chat with support for multiple models (OpenAI, Claude, Azure, Perplexity, Ollama)
-- Command Blocks for isolating and monitoring individual commands with auto-close options
-- One-click remote connections with full terminal and file system access
-- Rich customization including tab themes, terminal styles, and background images
-- Powerful `wsh` command system for managing your workspace from the CLI and sharing data between terminal sessions
+- **Flexible Drag & Drop Oberfläche** für die Organisation von Terminal-Blöcken, Editoren, Webbrowsern und KI-Assistenten
+- **Integrierter Editor** für nahtloses Bearbeiten von Remote-Dateien mit Syntax-Highlighting
+- **Reiche Dateivorschau** für Remote-Dateien (Markdown, Bilder, Video, PDFs, CSVs, Verzeichnisse)
+- **Integrierter KI-Chat** mit Unterstützung für mehrere Modelle (OpenAI, Claude, Azure, Perplexity, Ollama)
+- **Command Blocks** für die Isolierung und Überwachung einzelner Befehle
+- **One-Click Remote-Verbindungen** mit vollständigem Terminal- und Dateisystemzugriff
 
 ## Installation
 
-Wave Terminal works on macOS, Linux, and Windows.
+### Voraussetzungen
 
-Platform-specific installation instructions can be found [here](https://docs.waveterm.dev/gettingstarted).
+Bevor du das Script verwendest, stelle sicher, dass folgende Abhängigkeiten installiert sind:
 
-You can also install Wave Terminal directly from: [www.waveterm.dev/download](https://www.waveterm.dev/download).
+- **Node.js 22 LTS** oder höher
+- **Go 1.21** oder höher
+- **Task** (Task Runner)
+- **Git**
 
-### Minimum requirements
+### Installation der Abhängigkeiten
 
-Wave Terminal runs on the following platforms:
+#### Windows
 
-- macOS 11 or later (arm64, x64)
-- Windows 10 1809 or later (x64)
-- Linux based on glibc-2.28 or later (Debian 10, RHEL 8, Ubuntu 20.04, etc.) (arm64, x64)
+```powershell
+# Node.js von https://nodejs.org/
+# Go von https://go.dev/
+# Task von https://taskfile.dev/installation/
+```
 
-The WSH helper runs on the following platforms:
+#### macOS
 
-- macOS 11 or later (arm64, x64)
-- Windows 10 or later (arm64, x64)
-- Linux Kernel 2.6.32 or later (x64), Linux Kernel 3.1 or later (arm64)
+```bash
+# Mit Homebrew
+brew install node go task
 
-## Roadmap
+# Oder mit MacPorts
+sudo port install nodejs go task
+```
 
-Wave is constantly improving! Our roadmap will be continuously updated with our goals for each release. You can find it [here](./ROADMAP.md).
+#### Linux
 
-Want to provide input to our future releases? Connect with us on [Discord](https://discord.gg/XfvZ334gwU) or open a [Feature Request](https://github.com/wavetermdev/waveterm/issues/new/choose)!
+```bash
+# Ubuntu/Debian
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install golang-go
+sudo snap install task --classic
+
+# Fedora/RHEL
+sudo dnf install nodejs go task
+
+# Arch
+sudo pacman -S nodejs go task
+```
+
+## Verwendung
+
+### 1. Installation
+
+Führe das Install-Script aus, um Wave Terminal zu klonen und alle Abhängigkeiten zu installieren:
+
+```bash
+node install.js
+```
+
+### 2. Build (Optional)
+
+Erstelle eine ausführbare Version von Wave Terminal:
+
+```bash
+node build.js
+```
+
+### 3. Start
+
+Starte Wave Terminal:
+
+```bash
+# Für Production-Build (falls verfügbar)
+node start.js
+
+# Für Development-Modus mit Hot Reload
+node dev.js
+```
+
+## Script-Funktionen
+
+### install.js
+
+- Klont das Wave Terminal Repository
+- Installiert Node.js und Go Abhängigkeiten
+- Initialisiert das Projekt
+
+### build.js
+
+- Erstellt eine Production-Build von Wave Terminal
+- Generiert ausführbare Dateien für deine Plattform
+- Speichert Build-Artefakte im `make/` Verzeichnis
+
+### start.js
+
+- Startet Wave Terminal
+- Erkennt automatisch, ob ein Production-Build verfügbar ist
+- Fällt auf Development-Modus zurück, falls kein Build vorhanden ist
+- Installiert automatisch Pakete auf Linux-Systemen
+
+### dev.js
+
+- Startet Wave Terminal im Development-Modus
+- Aktiviert Hot Module Reloading
+- Zeigt Live-Logs an
+
+## Plattform-Unterstützung
+
+- **Windows**: .exe Dateien
+- **macOS**: .app Bundle
+- **Linux**: .deb, .rpm, oder .snap Pakete
+
+## Troubleshooting
+
+### Häufige Probleme
+
+1. **"Wave Terminal not installed"**
+
+   - Führe zuerst `node install.js` aus
+
+2. **Build-Fehler**
+
+   - Stelle sicher, dass alle Abhängigkeiten installiert sind
+   - Überprüfe die Go und Node.js Versionen
+
+3. **Permission-Fehler auf Linux**
+   - Verwende `sudo` für Paket-Installationen
+
+### Logs
+
+- Development-Logs werden in der Konsole angezeigt
+- Backend-Logs findest du unter `~/.waveterm-dev/waveapp.log`
 
 ## Links
 
-- Homepage &mdash; https://www.waveterm.dev
-- Download Page &mdash; https://www.waveterm.dev/download
-- Documentation &mdash; https://docs.waveterm.dev
-- Legacy Documentation &mdash; https://legacydocs.waveterm.dev
-- Blog &mdash; https://blog.waveterm.dev
-- X &mdash; https://x.com/wavetermdev
-- Discord Community &mdash; https://discord.gg/XfvZ334gwU
+- [Wave Terminal Homepage](https://waveterm.dev)
+- [Dokumentation](https://docs.waveterm.dev)
+- [GitHub Repository](https://github.com/Icarus-B4/waveterm)
+- [Discord Community](https://discord.gg/XfvZ334gwU)
 
-## Building from Source
+## Lizenz
 
-See [Building Wave Terminal](BUILD.md).
-
-## Contributing
-
-Wave uses GitHub Issues for issue tracking.
-
-Find more information in our [Contributions Guide](CONTRIBUTING.md), which includes:
-
-- [Ways to contribute](CONTRIBUTING.md#contributing-to-wave-terminal)
-- [Contribution guidelines](CONTRIBUTING.md#before-you-start)
-- [Storybook](https://docs.waveterm.dev/storybook)
-
-## License
-
-Wave Terminal is licensed under the Apache-2.0 License. For more information on our dependencies, see [here](./ACKNOWLEDGEMENTS.md).
+Wave Terminal ist unter der Apache-2.0 Lizenz lizenziert.

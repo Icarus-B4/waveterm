@@ -1,0 +1,41 @@
+{
+    "name": "Wave Terminal",
+    "description": "Open-Source AI-Native Terminal Built for Seamless Workflows",
+    "version": "1.0.0",
+    "author": "Wave Terminal Team",
+    "license": "Apache-2.0",
+    "homepage": "https://waveterm.dev",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Icarus-B4/waveterm.git"
+    },
+    "keywords": ["terminal", "ai", "development", "productivity", "electron"],
+    "category": "Development Tools",
+    "icon": "https://raw.githubusercontent.com/wavetermdev/waveterm/main/assets/wave-light.png",
+    "screenshots": ["https://raw.githubusercontent.com/wavetermdev/waveterm/main/assets/wave-screenshot.webp"],
+    "requirements": {
+        "node": ">=22.0.0",
+        "go": ">=1.21.0",
+        "task": ">=3.0.0"
+    },
+    "platforms": {
+        "windows": {
+            "arch": ["x64"]
+        },
+        "macos": {
+            "arch": ["x64", "arm64"]
+        },
+        "linux": {
+            "arch": ["x64", "arm64"]
+        }
+    },
+    "scripts": {
+        "install": "install.js",
+        "start": "start.js",
+        "build": "build.js",
+        "dev": "dev.js"
+    },
+    "env": {
+        "WAVETERM_DIR": "{{PINOKIO_ROOT}}/repos/waveterm"
+    }
+}
